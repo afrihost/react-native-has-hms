@@ -13,11 +13,11 @@ import com.huawei.hms.api.HuaweiApiAvailability;
 
 public class HasHmsModule extends ReactContextBaseJavaModule {
 
-    private final ReactApplicationContext reactContext;
+    private final ReactApplicationContext mContext;
 
     public HasHmsModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.reactContext = reactContext;
+        this.mContext = reactContext;
     }
 
     @Override

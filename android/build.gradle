@@ -41,6 +41,14 @@ buildscript {
     }
 }
 
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://developer.huawei.com/repo/' } // HUAWEI Maven repository
+    }
+}
+
 apply plugin: 'com.huawei.agconnect'
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
@@ -161,3 +169,5 @@ afterEvaluate { project ->
         }
     }
 }
+
+apply plugin: 'com.huawei.agconnect'

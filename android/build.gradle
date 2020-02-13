@@ -48,8 +48,7 @@ allprojects {
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
-apply plugin: 'com.huawei.agconnect'
-
+//apply plugin: 'com.huawei.agconnect'
 
 android {
     compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)

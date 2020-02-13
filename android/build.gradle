@@ -12,7 +12,7 @@
 
 def DEFAULT_COMPILE_SDK_VERSION = 28
 def DEFAULT_BUILD_TOOLS_VERSION = '28.0.3'
-def DEFAULT_MIN_SDK_VERSION = 16
+def DEFAULT_MIN_SDK_VERSION = 17
 def DEFAULT_TARGET_SDK_VERSION = 28
 
 def safeExtGet(prop, fallback) {
@@ -31,13 +31,17 @@ buildscript {
         repositories {
             google()
             jcenter()
+            maven { url 'https://developer.huawei.com/repo/' } // HUAWEI Maven repository
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:3.4.1'
+            classpath 'com.huawei.agconnect:agcp:1.0.0.300'  // HUAWEI agcp plugin
+            classpath 'com.google.gms:google-services:4.2.0'
         }
     }
 }
 
+apply plugin: 'com.huawei.agconnect'
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
@@ -66,13 +70,23 @@ repositories {
         // Android JSC is installed from npm
         url "$rootDir/../node_modules/jsc-android/dist"
     }
+    maven { url 'https://developer.huawei.com/repo/' } // HUAWEI Maven repository
     google()
     jcenter()
 }
 
 dependencies {
+    String HMSSDKVer ='4.0.1.301'
+    String GMSSDKVer ='16.0.1'
+
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
+    implementation 'com.google.android.gms:play-services-base:'+GMSSDKVer
+    implementation 'com.huawei.hms:push:'+HMSSDKVer
+    implementation 'com.huawei.hms:iap:'+HMSSDKVer
+    implementation 'com.huawei.hms:game:'+HMSSDKVer
+    implementation 'com.huawei.hms:sns:'+HMSSDKVer
+    implementation 'com.huawei.hms:hwid:'+HMSSDKVer
 }
 
 def configureReactNativePom(def pom) {

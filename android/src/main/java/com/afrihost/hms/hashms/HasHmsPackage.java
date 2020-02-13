@@ -1,6 +1,6 @@
 package com.afrihost.hms.hashms;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,6 +20,11 @@ public class HasHmsPackage implements ReactPackage {
         modules.add(new HasHmsModule(reactContext));
 
         return modules;
+    }
+
+    @Override
+    public List<Class<? extends JavaScriptModule>> createJSModules() {
+        return null;
     }
 
     @Override

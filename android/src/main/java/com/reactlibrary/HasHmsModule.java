@@ -1,9 +1,14 @@
-package com.reactlibrary;
+package com.afrihost.hms.hashms;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.huawei.hms.api.HuaweiApiAvailability;
 
 public class HasHmsModule extends ReactContextBaseJavaModule {
 
@@ -20,8 +25,16 @@ public class HasHmsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void sampleMethod(String stringArgument, int numberArgument, Callback callback) {
-        // TODO: Implement some actually useful functionality
-        callback.invoke("Received numberArgument: " + numberArgument + " stringArgument: " + stringArgument);
+    public void isHMSAvailable(Promise promise) {
+        HuaweiApiAvailability hms = HuaweiApiAvailability.getInstance();
+        int isHMS = hms.isHuaweiMobileServicesAvailable(mContext);
+        promise.resolve(isHMS == ConnectionResult.SUCCESS);
+    }
+
+    @ReactMethod
+    public void isGMSAvailable(Promise promise) {
+        GoogleApiAvailability gms = GoogleApiAvailability.getInstance();
+        int isGMS = gms.isGooglePlayServicesAvailable(mContext);
+        promise.resolve(isGMS == ConnectionResult.SUCCESS);
     }
 }

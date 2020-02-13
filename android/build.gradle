@@ -19,9 +19,6 @@ def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
-apply plugin: 'com.android.library'
-apply plugin: 'maven'
-
 buildscript {
     // The Android Gradle plugin is only required when opening the android folder stand-alone.
     // This avoids unnecessary downloads and potential conflicts when the library is included as a
@@ -34,8 +31,8 @@ buildscript {
             maven { url 'https://developer.huawei.com/repo/' } // HUAWEI Maven repository
         }
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.4.1'
-            classpath 'com.huawei.agconnect:agcp:1.2.0.300'  // HUAWEI agcp plugin
+            classpath 'com.android.tools.build:gradle:3.5.2'
+            classpath 'com.huawei.agconnect:agcp:1.0.0.300'  // HUAWEI agcp plugin
             classpath 'com.google.gms:google-services:4.2.0'
         }
     }
@@ -49,9 +46,10 @@ allprojects {
     }
 }
 
-apply plugin: 'com.huawei.agconnect'
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
+apply plugin: 'com.huawei.agconnect'
+
 
 android {
     compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
@@ -84,17 +82,17 @@ repositories {
 }
 
 dependencies {
-    String HMSSDKVer ='4.0.1.301'
+    String HMSSDKVer ='4.0.0.300'
     String GMSSDKVer ='16.0.1'
 
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
     implementation 'com.google.android.gms:play-services-base:'+GMSSDKVer
     implementation 'com.huawei.hms:push:'+HMSSDKVer
-    implementation 'com.huawei.hms:iap:'+HMSSDKVer
-    implementation 'com.huawei.hms:game:'+HMSSDKVer
-    implementation 'com.huawei.hms:sns:'+HMSSDKVer
-    implementation 'com.huawei.hms:hwid:'+HMSSDKVer
+    // implementation 'com.huawei.hms:iap:'+HMSSDKVer
+    // implementation 'com.huawei.hms:game:'+HMSSDKVer
+    // implementation 'com.huawei.hms:sns:'+HMSSDKVer
+    // implementation 'com.huawei.hms:hwid:'+HMSSDKVer
 }
 
 def configureReactNativePom(def pom) {
@@ -170,4 +168,4 @@ afterEvaluate { project ->
     }
 }
 
-apply plugin: 'com.huawei.agconnect'
+

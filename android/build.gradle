@@ -35,7 +35,7 @@ buildscript {
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:3.4.1'
-            classpath 'com.huawei.agconnect:agcp:1.0.0.300'  // HUAWEI agcp plugin
+            classpath 'com.huawei.agconnect:agcp:1.2.0.300'  // HUAWEI agcp plugin
             classpath 'com.google.gms:google-services:4.2.0'
         }
     }

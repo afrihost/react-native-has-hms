@@ -2,7 +2,7 @@
   "name": "react-native-has-hms",
   "title": "React Native Has Hms",
   "version": "0.0.1",
-  "description": "TODO",
+  "description": "Huawei Mobile Services utility to check if a device is running the HMS service.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

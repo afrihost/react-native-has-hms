@@ -28,10 +28,11 @@ buildscript {
         repositories {
             google()
             jcenter()
+            mavenCentral()
             maven { url 'https://developer.huawei.com/repo/' } // HUAWEI Maven repository
         }
         dependencies {
-            classpath 'com.android.tools.build:gradle:5.4.1'
+            classpath 'com.android.tools.build:gradle:3.2.0'
             classpath 'com.huawei.agconnect:agcp:1.2.0.300'  // HUAWEI agcp plugin
             classpath 'com.google.gms:google-services:4.3.3'
         }
@@ -145,11 +146,14 @@ afterEvaluate { project ->
 
     android.libraryVariants.all { variant ->
         def name = variant.name.capitalize()
-        def javaCompileTask = variant.javaCompileProvider.get()
-
-        task "jar${name}"(type: Jar, dependsOn: javaCompileTask) {
-            from javaCompileTask.destinationDir
+        task "jar${name}"(type: Jar, dependsOn: variant.javaCompile) {
+            from variant.javaCompile.destinationDir
         }
+        // def javaCompileTask = variant.javaCompileProvider.get()
+
+        // task "jar${name}"(type: Jar, dependsOn: javaCompileTask) {
+        //     from javaCompileTask.destinationDir
+        // }
     }
 
     artifacts {
